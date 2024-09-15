@@ -1,15 +1,14 @@
 from Utils.subnetting import calculate_subnet_from_cidr,calculate_subnet_from_ip_and_mask, show_subnet_details, calculate_subnets
+from Utils.ip_utils import ip_to_binary
 import os
 
-def wait_for_user():
-    """Pause execution and wait for the user to press Enter."""
-    input("\nPress Enter to continue...")
 
 def main():
     while True:
         
         os.system('cls' if os.name == 'nt' else 'clear')
         os.system('cls' if os.name == 'nt' else 'clear')
+
 
         print("""                                                                                                                       
                    *                         +                   
@@ -45,6 +44,8 @@ def main():
 
 
         function_chosen = input("--> ")
+
+######################################################
         if function_chosen == "1":
             cidr = input("Enter the ip/CIDR -->  ")
             subnet_info = calculate_subnet_from_cidr(cidr)
@@ -54,7 +55,9 @@ def main():
     Usable Hosts Range: {subnet_info['Usable Hosts Range'][0]} to {subnet_info['Usable Hosts Range'][1]}
     """)
         
+#end 1
         
+######################################################
         if function_chosen == "2":
             ip = input("Enter the IP address --> ")
             subnet_mask = input("Enter the subnet mask --> ")
@@ -66,9 +69,9 @@ def main():
         Broadcast Address: {subnet_info['Broadcast Address']}
         Usable Hosts Range: {subnet_info['Usable Hosts Range'][0]} to {subnet_info['Usable Hosts Range'][1]}
         """)
-        
+#end 2
 
-
+######################################################
         if function_chosen == "3":
             ip = input("Enter ip -->  ")
             num_subnet = int(input("Enter number of subnet you want -->"))
@@ -95,12 +98,17 @@ def main():
                     print("Invalid subnet number!")
             else:
                 return None
-            
+#end 3
+######################################################            
+        if function_chosen == "4":
+            ip_or_mask = input("Enter IP address or subnet mask --> ")
+            print(f"Binary representation: {ip_to_binary(ip_or_mask)}")
+#end 4
+        
         if function_chosen == "0":
                 break
-
-
-        wait_for_user()
+                
+        input("\nPress Enter to continue...")
     #End while              
 
 
